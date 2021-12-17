@@ -8,7 +8,47 @@ namespace RoomCalc
 {
     public class MyInput
     {
-        public static MyRequest GenerateInput()
+        public static List<MyRequest> GenerateInput()
+        {
+            List<MyRequest> mylist = new List<MyRequest>();
+
+            mylist.Add(Test1());
+            mylist.Add(Test2());
+            mylist.Add(Test3());
+            mylist.Add(Test4());
+            mylist.Add(Test5());
+            mylist.Add(Test6());
+            mylist.Add(Test7());
+
+            return mylist;
+        }
+
+
+        public static MyRequest Test1()
+        {
+            //
+
+            List<CheapestOffer> mylist = new List<CheapestOffer>();
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "A", RoomFree = 2, RoomPrice = 100 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "A", RoomFree = 2, RoomPrice = 105 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "B", RoomFree = 2, RoomPrice = 120 });            
+
+            return new MyRequest() { offerlist = mylist, rooms = 2 };
+        }
+
+        public static MyRequest Test2()
+        {
+            List<CheapestOffer> mylist = new List<CheapestOffer>();
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "A", RoomFree = 1, RoomPrice = 100 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "A", RoomFree = 1, RoomPrice = 105 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+
+            return new MyRequest() { offerlist = mylist, rooms = 2 };
+        }
+
+        public static MyRequest Test3()
         {
             List<CheapestOffer> mylist = new List<CheapestOffer>();
             mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "A", RoomFree = 1, RoomPrice = 100 });
@@ -16,13 +56,64 @@ namespace RoomCalc
             mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "A", RoomFree = 1, RoomPrice = 105 });
             mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
             mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "C", RoomFree = 2, RoomPrice = 110 });
-            //mylist.Add(new CheapestOffer(){ RoomSeq = 3, RoomId = "A3", RoomFree = 1, RoomPrice = 100 });
-            //mylist.Add(new CheapestOffer(){ RoomSeq = 3, RoomId = "B3", RoomFree = 2, RoomPrice = 120 });
-       
-            return new MyRequest() {  offerlist = mylist, rooms = 2  };
+
+            return new MyRequest() { offerlist = mylist, rooms = 2 };
         }
 
-        //TODO Add all possible 
+        public static MyRequest Test4()
+        {
+            List<CheapestOffer> mylist = new List<CheapestOffer>();
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "A", RoomFree = 2, RoomPrice = 100 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "A", RoomFree = 2, RoomPrice = 105 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+
+
+            return new MyRequest() { offerlist = mylist, rooms = 2 };
+        }
+
+        public static MyRequest Test5()
+        {
+            List<CheapestOffer> mylist = new List<CheapestOffer>();
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "A", RoomFree = 1, RoomPrice = 100 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "A", RoomFree = 1, RoomPrice = 105 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "C", RoomFree = 2, RoomPrice = 110 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 3, RoomId = "A", RoomFree = 1, RoomPrice = 100 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 3, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+
+            return new MyRequest() { offerlist = mylist, rooms = 2 };
+        }
+
+        public static MyRequest Test6()
+        {
+            List<CheapestOffer> mylist = new List<CheapestOffer>();
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "A", RoomFree = 1, RoomPrice = 100 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "A", RoomFree = 1, RoomPrice = 105 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "C", RoomFree = 2, RoomPrice = 110 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 3, RoomId = "A", RoomFree = 1, RoomPrice = 100 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 3, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+
+            return new MyRequest() { offerlist = mylist, rooms = 2 };
+        }
+
+        public static MyRequest Test7()
+        {
+            List<CheapestOffer> mylist = new List<CheapestOffer>();
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "A", RoomFree = 1, RoomPrice = 100 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "A", RoomFree = 1, RoomPrice = 105 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "C", RoomFree = 2, RoomPrice = 110 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 3, RoomId = "A", RoomFree = 1, RoomPrice = 100 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 3, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+
+            return new MyRequest() { offerlist = mylist, rooms = 2 };
+        }
+
     }
 
     public class MyRequest

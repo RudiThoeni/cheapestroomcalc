@@ -1,92 +1,99 @@
 ﻿using Combinatorics.Collections;
 using RoomCalc;
 
+var myinputlist = MyInput.GenerateInput();
 
-var myinput = MyInput.GenerateInput();
+int counter = 1;
 
-var list = myinput.offerlist;
-var rooms = myinput.rooms;
-
-//Create combinations
-Combinations<CheapestOffer> combinations = new Combinations<CheapestOffer>(list, rooms);
-
-List<CheapestRoomCombinationResult> myresult = new List<CheapestRoomCombinationResult>();
-
-Console.ForegroundColor = ConsoleColor.Green;
-
-Console.WriteLine("Requested " + rooms + " Rooms");
-
-//Display Roominfo
-foreach(var roominfoid in list.Select(x => x.RoomId).Distinct())
+foreach (var myinput in myinputlist)
 {
-	var room = list.Where(x => x.RoomId == roominfoid).FirstOrDefault();
-	Console.WriteLine("Room Id " + roominfoid + " available " + room.RoomFree + " price:" +  room.RoomPrice);	
-}
+	Console.WriteLine("---------------------------------TEST" + counter + "--------------------------------------");
 
-Console.ForegroundColor = ConsoleColor.Yellow;
+	var list = myinput.offerlist;
+	var rooms = myinput.rooms;
 
-foreach (IList<CheapestOffer> c in combinations)
-{
-	bool addcombination = true;
-	
-	for (int i = 0; i < rooms; i++)
+	//Create combinations
+	Combinations<CheapestOffer> combinations = new Combinations<CheapestOffer>(list, rooms);
+
+	List<CheapestRoomCombinationResult> myresult = new List<CheapestRoomCombinationResult>();
+
+	Console.ForegroundColor = ConsoleColor.Green;
+
+	Console.WriteLine("Requested " + rooms + " Rooms");
+
+	//Display Roominfo
+	foreach (var roominfoid in list.Select(x => x.RoomId).Distinct())
 	{
-		Console.Write(String.Format("{{{0} ({1}) }}  ", c[i].RoomId, c[i].RoomSeq));
+		var room = list.Where(x => x.RoomId == roominfoid).FirstOrDefault();
+		Console.WriteLine("Room Id " + roominfoid + " available " + room.RoomFree + " price:" + room.RoomPrice);
 	}
-	Console.Write("\n");
 
+	Console.ForegroundColor = ConsoleColor.Yellow;
 
-	//Check with roomseqdict if the combination is valid
-
-	for (int i = 0; i < rooms; i++)
+	foreach (IList<CheapestOffer> c in combinations)
 	{
-		if (c.Where(x => x.RoomSeq == c[i].RoomSeq).Count() > 1)
+		bool addcombination = true;
+
+		for (int i = 0; i < rooms; i++)
 		{
-			Console.WriteLine("Removing combination - same roomseq");
-			addcombination = false;
+			Console.Write(String.Format("{{{0} ({1}) }}  ", c[i].RoomId, c[i].RoomSeq));
+		}
+		Console.Write("\n");
+
+
+		//Check with roomseqdict if the combination is valid
+
+		for (int i = 0; i < rooms; i++)
+		{
+			if (c.Where(x => x.RoomSeq == c[i].RoomSeq).Count() > 1)
+			{
+				Console.WriteLine("Removing combination - same roomseq");
+				addcombination = false;
+			}
+
+			if (!addcombination)
+				break;
 		}
 
-		if (!addcombination)
-			break;
-	}
+		//TODO remove all combinations where roomfree does not match
+		//string roomid = c[0].RoomId;
+		//int roomcount = 
 
-    //TODO remove all combinations where roomfree does not match
-    //string roomid = c[0].RoomId;
-    //int roomcount = 
+		for (int i = 0; i < rooms; i++)
+		{
+			//Check how often room with this id is used
+			if (c.Where(x => x.RoomId == c[i].RoomId).Count() > c[i].RoomFree)
+			{
+				Console.WriteLine("Removing combination - room used to often!");
+				addcombination = false;
+			}
 
-    for (int i = 0; i < rooms; i++)
-    {
-		//Check how often room with this id is used
-        if (c.Where(x => x.RoomId == c[i].RoomId).Count() > c[i].RoomFree)
-        {
-			Console.WriteLine("Removing combination - room used to often!");
-			addcombination = false;
+			if (!addcombination)
+				break;
 		}
 
-		if (!addcombination)
-			break;
+
+		if (addcombination)
+		{
+			myresult.Add(new CheapestRoomCombinationResult() { CheapestRoomCombination = c });
+		}
 	}
 
+	Console.WriteLine("Result is");
 
-    if (addcombination)
-    {
-		myresult.Add(new CheapestRoomCombinationResult() { CheapestRoomCombination = c });
+	foreach (var x in myresult)
+	{
+		for (int i = 0; i < rooms; i++)
+		{
+			Console.Write(String.Format("{{{0} ({1}) Price: {2} }}", x.CheapestRoomCombination[i].RoomId, x.CheapestRoomCombination[i].RoomSeq, x.CheapestRoomCombination[i].RoomPrice));
+		}
+		Console.WriteLine("Total:" + x.Price);
 	}
+
+	var cheapestcombination = myresult.OrderBy(x => x.Price).Take(1).FirstOrDefault();
+	Console.ForegroundColor = ConsoleColor.Red;
+	Console.WriteLine(cheapestcombination.Price + " " + String.Join(",", cheapestcombination.CheapestRoomCombination.Select(x => x.RoomId)));
+
 }
-
-Console.WriteLine("Result is");
-
-foreach(var x in myresult)
-{
-	for(int i = 0; i < rooms; i++)
-    {
-		Console.Write(String.Format("{{{0} ({1}) Price: {2} }}", x.CheapestRoomCombination[i].RoomId, x.CheapestRoomCombination[i].RoomSeq, x.CheapestRoomCombination[i].RoomPrice));
-    }
-	Console.WriteLine("Total:" + x.Price);
-}
-
-var cheapestcombination = myresult.OrderBy(x => x.Price).Take(1).FirstOrDefault();
-Console.ForegroundColor = ConsoleColor.Red;	
-Console.WriteLine(cheapestcombination.Price + " " + String.Join(",", cheapestcombination.CheapestRoomCombination.Select(x =>x.RoomId)));
 
 Console.ReadLine();
