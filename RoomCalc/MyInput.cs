@@ -12,6 +12,9 @@ namespace RoomCalc
         {
             List<MyRequest> mylist = new List<MyRequest>();
 
+            mylist.Add(Test0());
+
+
             mylist.Add(Test1());
             mylist.Add(Test11());
             mylist.Add(Test12());
@@ -31,6 +34,16 @@ namespace RoomCalc
             return mylist;
         }
 
+        public static MyRequest Test0()
+        {
+            //Request 2 Rooms. all of them are available only, same prices, should give A A 200 as result
+
+            List<CheapestOffer> mylist = new List<CheapestOffer>();
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "A", RoomFree = 2, RoomPrice = 100 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
+
+            return new MyRequest() { offerlist = mylist, rooms = 1 };
+        }
 
         public static MyRequest Test1()
         {
