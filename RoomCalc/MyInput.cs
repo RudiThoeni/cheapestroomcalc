@@ -12,17 +12,17 @@ namespace RoomCalc
         {
             List<MyRequest> mylist = new List<MyRequest>();
 
-            //mylist.Add(Test1());
-            //mylist.Add(Test11());
-            //mylist.Add(Test12());
-            //mylist.Add(Test13());
+            mylist.Add(Test1());
+            mylist.Add(Test11());
+            mylist.Add(Test12());
+            mylist.Add(Test13());
 
-            //mylist.Add(Test2());
-            //mylist.Add(Test3());
-            //mylist.Add(Test4());
-            //mylist.Add(Test5());
-            //mylist.Add(Test6());
-            //mylist.Add(Test7());
+            mylist.Add(Test2());
+            mylist.Add(Test3());
+            mylist.Add(Test4());
+            mylist.Add(Test5());
+            mylist.Add(Test6());
+            mylist.Add(Test7());
 
             mylist.Add(TestReal());
             mylist.Add(TestReal2());

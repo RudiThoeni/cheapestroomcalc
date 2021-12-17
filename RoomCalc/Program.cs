@@ -47,12 +47,11 @@ foreach (var myinput in myinputlist)
 
 
 		//Check with roomseqdict if the combination is valid
-
 		for (int i = 0; i < rooms; i++)
 		{
 			if (c.Where(x => x.RoomSeq == c[i].RoomSeq).Count() > 1)
 			{
-				Console.WriteLine("Removing combination - same roomseq");
+				Console.WriteLine("Removing combination - room in the same roomseq");
 				addcombination = false;
 			}
 
@@ -60,21 +59,24 @@ foreach (var myinput in myinputlist)
 				break;
 		}
 
-		//TODO remove all combinations where roomfree does not match
+		//TODO remove all combinations where more rooms are used than roomfree 
 		//string roomid = c[0].RoomId;
 		//int roomcount = 
 
-		for (int i = 0; i < rooms; i++)
+		if (addcombination)
 		{
-			//Check how often room with this id is used
-			if (c.Where(x => x.RoomId == c[i].RoomId).Count() > c[i].RoomFree)
+			for (int i = 0; i < rooms; i++)
 			{
-				Console.WriteLine("Removing combination - room used to often!");
-				addcombination = false;
-			}
+				//Check how often room with this id is used
+				if (c.Where(x => x.RoomId == c[i].RoomId).Count() > c[i].RoomFree)
+				{
+					Console.WriteLine("Removing combination - room used more than available!");
+					addcombination = false;
+				}
 
-			if (!addcombination)
-				break;
+				if (!addcombination)
+					break;
+			}
 		}
 
 
