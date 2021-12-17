@@ -61,7 +61,7 @@ foreach(var x in myresult)
 {
 	for(int i = 0; i < rooms; i++)
     {
-		Console.Write(String.Format("{{{0} ({1}) }}", x.CheapestRoomCombination[i].RoomId, x.CheapestRoomCombination[i].RoomPrice));
+		Console.Write(String.Format("{{{0} ({1}) Price: {2} }}", x.CheapestRoomCombination[i].RoomId, x.CheapestRoomCombination[i].RoomSeq, x.CheapestRoomCombination[i].RoomPrice));
     }
 	Console.WriteLine("Total:" + x.Price);
 }
