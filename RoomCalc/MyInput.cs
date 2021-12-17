@@ -6,20 +6,28 @@ using System.Threading.Tasks;
 
 namespace RoomCalc
 {
-    static class MyInput
+    public class MyInput
     {
-        public static List<CheapestOffer> GenerateInput()
+        public static MyRequest GenerateInput()
         {
             List<CheapestOffer> mylist = new List<CheapestOffer>();
             mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "A", RoomFree = 1, RoomPrice = 100 });
             mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
-            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "A", RoomFree = 1, RoomPrice = 100 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "A", RoomFree = 1, RoomPrice = 105 });
             mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
             mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "C", RoomFree = 2, RoomPrice = 110 });
             //mylist.Add(new CheapestOffer(){ RoomSeq = 3, RoomId = "A3", RoomFree = 1, RoomPrice = 100 });
             //mylist.Add(new CheapestOffer(){ RoomSeq = 3, RoomId = "B3", RoomFree = 2, RoomPrice = 120 });
-
-            return mylist;
+       
+            return new MyRequest() {  offerlist = mylist, rooms = 2  };
         }
+
+        //TODO Add all possible 
+    }
+
+    public class MyRequest
+    {
+        public List<CheapestOffer> offerlist { get; set; }
+        public int rooms { get; set; }
     }
 }
