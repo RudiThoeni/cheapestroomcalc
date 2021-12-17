@@ -1,5 +1,6 @@
 ﻿using Combinatorics.Collections;
 using RoomCalc;
+using System.Diagnostics;
 
 var myinputlist = MyInput.GenerateInput();
 
@@ -8,13 +9,11 @@ int counter = 1;
 foreach (var myinput in myinputlist)
 {
 	Console.WriteLine("---------------------------------TEST" + counter + "--------------------------------------");
+	counter++;
 
 	var list = myinput.offerlist;
 	var rooms = myinput.rooms;
-
-	//Create combinations
-	Combinations<CheapestOffer> combinations = new Combinations<CheapestOffer>(list, rooms);
-
+	
 	List<CheapestRoomCombinationResult> myresult = new List<CheapestRoomCombinationResult>();
 
 	Console.ForegroundColor = ConsoleColor.Green;
@@ -29,6 +28,12 @@ foreach (var myinput in myinputlist)
 	}
 
 	Console.ForegroundColor = ConsoleColor.Yellow;
+
+	Stopwatch mywatch = new Stopwatch();
+	mywatch.Start();
+
+	//Create combinations OR use variations??
+	Combinations<CheapestOffer> combinations = new Combinations<CheapestOffer>(list, rooms);
 
 	foreach (IList<CheapestOffer> c in combinations)
 	{
@@ -94,6 +99,8 @@ foreach (var myinput in myinputlist)
 	Console.ForegroundColor = ConsoleColor.Red;
 	Console.WriteLine(cheapestcombination.Price + " " + String.Join(",", cheapestcombination.CheapestRoomCombination.Select(x => x.RoomId)));
 
+	mywatch.Stop();
+	Console.WriteLine("Time taken:" + mywatch.ElapsedMilliseconds);
 }
 
 Console.ReadLine();

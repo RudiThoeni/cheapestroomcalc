@@ -26,12 +26,12 @@ namespace RoomCalc
 
         public static MyRequest Test1()
         {
-            //
+            //Simple Request 2 Rooms. all of them are available only 
 
             List<CheapestOffer> mylist = new List<CheapestOffer>();
             mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "A", RoomFree = 2, RoomPrice = 100 });
             mylist.Add(new CheapestOffer() { RoomSeq = 1, RoomId = "B", RoomFree = 2, RoomPrice = 120 });
-            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "A", RoomFree = 2, RoomPrice = 105 });
+            mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "A", RoomFree = 2, RoomPrice = 100 });
             mylist.Add(new CheapestOffer() { RoomSeq = 2, RoomId = "B", RoomFree = 2, RoomPrice = 120 });            
 
             return new MyRequest() { offerlist = mylist, rooms = 2 };
