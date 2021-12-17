@@ -12,7 +12,18 @@ Combinations<CheapestOffer> combinations = new Combinations<CheapestOffer>(list,
 
 List<CheapestRoomCombinationResult> myresult = new List<CheapestRoomCombinationResult>();
 
-int counter = 1;
+Console.ForegroundColor = ConsoleColor.Green;
+
+Console.WriteLine("Requested " + rooms + " Rooms");
+
+//Display Roominfo
+foreach(var roominfoid in list.Select(x => x.RoomId).Distinct())
+{
+	var room = list.Where(x => x.RoomId == roominfoid).FirstOrDefault();
+	Console.WriteLine("Room Id " + roominfoid + " available " + room.RoomFree + " price:" +  room.RoomPrice);	
+}
+
+Console.ForegroundColor = ConsoleColor.Yellow;
 
 foreach (IList<CheapestOffer> c in combinations)
 {
