@@ -39,17 +39,25 @@ foreach (IList<CheapestOffer> c in combinations)
 			break;
 	}
 
-	//TODO remove all combinations where roomfree does not match
-	//string roomid = c[0].RoomId;
-	//int roomcount = 
+    //TODO remove all combinations where roomfree does not match
+    //string roomid = c[0].RoomId;
+    //int roomcount = 
 
-	//for (int i = 0; i < rooms; i++)
-	//{
-	//	if()
-	//}
+    for (int i = 0; i < rooms; i++)
+    {
+		//Check how often room with this id is used
+        if (c.Where(x => x.RoomId == c[i].RoomId).Count() > c[i].RoomFree)
+        {
+			Console.WriteLine("Removing combination - room used to often!");
+			addcombination = false;
+		}
+
+		if (!addcombination)
+			break;
+	}
 
 
-	if (addcombination)
+    if (addcombination)
     {
 		myresult.Add(new CheapestRoomCombinationResult() { CheapestRoomCombination = c });
 	}
